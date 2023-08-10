@@ -17,6 +17,11 @@ public class UserController {
         repository.create(user);
     }
 
+    public User createUser(String firstName, String lastName, String phone) {
+        User user = new User(firstName, lastName, phone);
+        return user;
+    }
+
     public User readUser(Long userId) throws Exception {
         List<User> users = repository.findAll();
         for (User user : users) {
@@ -31,5 +36,13 @@ public class UserController {
     public void updateUser(String userId, User update) {
         update.setId(Long.parseLong(userId));
         repository.update(Long.parseLong(userId), update);
+    }
+
+    public List<User> readAll() {
+        return repository.findAll();
+    }
+
+    public boolean deleteUser(long userId) {
+        return repository.delete(userId);
     }
 }
